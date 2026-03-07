@@ -1,0 +1,11 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "ANNOTATION_CONFIGURATION/lib/spring-expression-7.0.0-M8.jar",
+        "ANNOTATION_CONFIGURATION/lib/spring-core-7.0.0-M8.jar",
+        "ANNOTATION_CONFIGURATION/lib/spring-context-7.0.0-M8.jar",
+        "ANNOTATION_CONFIGURATION/lib/spring-beans-7.0.0-M8.jar",
+        "ANNOTATION_CONFIGURATION/lib/spring-aop-5.3.18.jar",
+        "ANNOTATION_CONFIGURATION/lib/commons-logging-1.2.jar"
+    ]
+}
