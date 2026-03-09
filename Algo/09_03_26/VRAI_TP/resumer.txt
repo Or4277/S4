@@ -1,0 +1,315 @@
+================================================================================
+        RESUME DES FONCTIONS RECURSIVES - PROJET ORDONNANCE MEDICALE
+================================================================================
+
+Ce document explique toutes les fonctions récursives présentes dans ce projet.
+Une fonction récursive est une fonction qui s'appelle elle-même.
+
+================================================================================
+                        1. MODELE SYMPTOME (Symptome.php)
+================================================================================
+
+1.1 buildArrayRecursif($rows, $index)
+-------------------------------------
+But: Construire un tableau à partir des résultats de la base de données
+Cas de base: Si index >= nombre de lignes, retourner tableau vide []
+Récursion: Ajouter élément actuel + appel récursif avec index + 1
+
+Exemple:
+  rows = [{id:1}, {id:2}, {id:3}], index = 0
+  -> [{id:1}] + buildArrayRecursif(rows, 1)
+  -> [{id:1}] + [{id:2}] + buildArrayRecursif(rows, 2)
+  -> [{id:1}, {id:2}, {id:3}]
+
+
+1.2 rechercherSymptome($symptomes, $nomRecherche, $index)
+---------------------------------------------------------
+But: Rechercher un symptôme par son nom dans une liste
+Cas de base: 
+  - Si index >= taille du tableau -> retourner null (non trouvé)
+  - Si nom correspond -> retourner le symptôme trouvé
+Récursion: Appel avec index + 1 pour chercher dans le reste
+
+Exemple:
+  symptomes = [Fièvre, Toux, Nausée], recherche = "Toux"
+  index=0: "Fièvre" != "Toux" -> rechercher(symptomes, "Toux", 1)
+  index=1: "Toux" == "Toux" -> retourner {Toux}
+
+
+1.3 compterSymptomes($symptomes, $index)
+----------------------------------------
+But: Compter le nombre de symptômes dans une liste
+Cas de base: Si index >= taille -> retourner 0
+Récursion: 1 + compterSymptomes(symptomes, index + 1)
+
+Exemple:
+  symptomes = [A, B, C]
+  compter(s, 0) = 1 + compter(s, 1)
+                = 1 + 1 + compter(s, 2)
+                = 1 + 1 + 1 + compter(s, 3)
+                = 1 + 1 + 1 + 0 = 3
+
+
+1.4 verifierExistence($symptomes, $id, $index)
+----------------------------------------------
+But: Vérifier si un ID existe dans la liste des symptômes
+Cas de base:
+  - Si index >= taille -> retourner false
+  - Si ID trouvé -> retourner true
+Récursion: Chercher dans le reste avec index + 1
+
+Exemple:
+  symptomes = [{id:1}, {id:5}, {id:8}], chercher id=5
+  index=0: 1 != 5 -> verifier(s, 5, 1)
+  index=1: 5 == 5 -> retourner true
+
+
+================================================================================
+                       2. MODELE MEDICAMENT (Medicament.php)
+================================================================================
+
+2.1 buildArrayRecursif($rows, $index)
+-------------------------------------
+Même fonctionnement que pour Symptome.php
+
+
+2.2 compterMedicaments($medicaments, $index)
+--------------------------------------------
+Même fonctionnement que compterSymptomes
+
+
+2.3 getMedicamentsParSymptomes($symptomeIds, $index, $medicaments, $medicamentIds)
+----------------------------------------------------------------------------------
+But: Récupérer le meilleur médicament (effet max) pour chaque symptôme
+Cas de base: Si index >= nombre de symptômes -> retourner les médicaments
+Récursion: 
+  - Chercher le médicament avec le meilleur effet pour le symptôme actuel
+  - L'ajouter s'il n'est pas déjà dans la liste
+  - Appel récursif avec symptôme suivant
+
+Exemple:
+  symptomeIds = [1, 2, 3]
+  index=0: Symptôme 1 -> meilleur medoc = Doliprane -> ajouter
+  index=1: Symptôme 2 -> meilleur medoc = Ibuprofène -> ajouter
+  index=2: Symptôme 3 -> meilleur medoc = Sirop -> ajouter
+  Résultat: [Doliprane, Ibuprofène, Sirop]
+
+
+2.4 collecterMedsParSymptomeRecursif($symptomeIds, $index, $result)
+-------------------------------------------------------------------
+But: Collecter tous les médicaments possibles pour chaque symptôme
+Cas de base: Si index >= nombre de symptômes -> retourner result
+Récursion: Ajouter tous les médocs du symptôme actuel + appel suivant
+
+Résultat: [[medocs symptome1], [medocs symptome2], ...]
+
+
+2.5 genererCombinaisonsRecursif($medsParSymptome, $index, $combinaisonActuelle, $toutesCombinaisons)
+---------------------------------------------------------------------------------------------------
+But: Générer toutes les combinaisons possibles de médicaments
+Cas de base: Si index >= nombre de groupes -> ajouter combinaison aux résultats
+Récursion: Parcourir chaque médicament du groupe et générer les suites
+
+Exemple:
+  Symptome1: [A, B], Symptome2: [C, D]
+  Combinaisons: [A,C], [A,D], [B,C], [B,D]
+
+
+2.6 parcourirMedsRecursif($medsParSymptome, $symptomeIndex, $medIndex, $combinaisonActuelle, $toutesCombinaisons)
+----------------------------------------------------------------------------------------------------------------
+But: Parcourir tous les médicaments d'un symptôme pour générer les combinaisons
+Cas de base: Si medIndex >= nombre de médocs -> retourner combinaisons
+Récursion: 
+  - Ajouter médoc actuel à la combinaison
+  - Générer les combinaisons avec les symptômes suivants
+  - Passer au médoc suivant du même symptôme
+
+
+2.7 ajouterSansDoublonRecursif($combinaison, $med, $index)
+----------------------------------------------------------
+But: Ajouter un médicament à une combinaison sans doublon
+Cas de base:
+  - Si index >= taille -> ajouter le médicament
+  - Si médoc déjà présent -> retourner combinaison inchangée
+Récursion: Vérifier élément suivant
+
+
+2.8 calculerInfosCombinaisonsRecursif($combinaisons, $index, $result)
+---------------------------------------------------------------------
+But: Calculer prix et effet pour chaque combinaison
+Cas de base: Si index >= nombre de combinaisons -> trier et retourner
+Récursion: Calculer infos de la combinaison actuelle + traiter la suivante
+
+
+2.9 trierCombinaisonsParPrix($combinaisons) - QUICKSORT
+-------------------------------------------------------
+But: Trier les combinaisons par prix croissant (algorithme Quicksort)
+Cas de base: Si <= 1 élément -> retourner tel quel
+Récursion:
+  - Choisir un pivot (premier élément)
+  - Partitionner: gauche (< pivot), droite (>= pivot)
+  - Trier récursivement gauche et droite
+  - Fusionner: gauche + pivot + droite
+
+
+2.10 partitionnerCombinaisonsRecursif($combinaisons, $pivot, $index, &$left, &$right)
+------------------------------------------------------------------------------------
+But: Partitionner les éléments autour du pivot pour Quicksort
+Cas de base: Si index >= taille -> arrêter
+Récursion: 
+  - Comparer élément au pivot
+  - Mettre dans left ou right
+  - Traiter élément suivant
+
+
+2.11 trouverMeilleureCombinaisonPourBudget($combinaisons, $budget, $graviteTotal, $index)
+-----------------------------------------------------------------------------------------
+But: Trouver la première combinaison qui rentre dans le budget
+Cas de base:
+  - Si index >= taille -> retourner null
+  - Si prix <= budget -> retourner cette combinaison
+Récursion: Tester la combinaison suivante
+
+
+2.12 calculerPrixTotal($medicaments, $index)
+--------------------------------------------
+But: Calculer la somme des prix de tous les médicaments
+Cas de base: Si index >= taille -> retourner 0
+Récursion: prix[index] + calculerPrixTotal(meds, index + 1)
+
+Exemple:
+  medicaments = [{prix:3}, {prix:5}, {prix:2}]
+  = 3 + calculer([5,2], 1)
+  = 3 + 5 + calculer([2], 2)
+  = 3 + 5 + 2 + 0 = 10
+
+
+2.13 collecterMedicamentsRecursif($symptomeIds, $index, $medicaments)
+---------------------------------------------------------------------
+But: Collecter tous les médicaments pour optimisation budget
+Cas de base: Si index >= nombre de symptômes -> retourner medicaments
+Récursion: Ajouter médocs du symptôme actuel + traiter suivant
+
+
+2.14 ajouterMedicamentsRecursif($meds, $index, $result)
+-------------------------------------------------------
+But: Ajouter tous les médicaments d'une liste à un résultat
+Cas de base: Si index >= taille -> retourner result
+Récursion: Ajouter élément actuel + traiter suivant
+
+
+2.15 selectionnerMedicamentsRecursif($medicaments, $budget, $index, $selection, $symptomesCouverts, $totalPrix, $medicamentIds)
+------------------------------------------------------------------------------------------------------------------------------
+But: Sélectionner médicaments en respectant le budget (algorithme glouton)
+Cas de base: Si index >= taille -> retourner selection
+Récursion:
+  - Si symptôme pas couvert ET prix total + prix médoc <= budget
+  - Ajouter le médicament
+  - Traiter médicament suivant
+
+
+2.16 trierParPrix($medicaments) - QUICKSORT
+-------------------------------------------
+But: Trier médicaments par prix (Quicksort)
+Même principe que trierCombinaisonsParPrix
+
+
+2.17 partitionnerRecursif($medicaments, $pivot, $index, &$left, &$right)
+------------------------------------------------------------------------
+But: Partitionner pour Quicksort
+Même principe que partitionnerCombinaisonsRecursif
+
+
+2.18 calculerEffetTotal($medicaments, $index)
+---------------------------------------------
+But: Calculer la somme des effets de tous les médicaments
+Cas de base: Si index >= taille -> retourner 0
+Récursion: effet[index] + calculerEffetTotal(meds, index + 1)
+
+
+================================================================================
+                    3. CONTROLEUR (SymptomeController.php)
+================================================================================
+
+3.1 getSymptomesAvecGraviteRecursif($symptomeModel, $ids, $gravites, $index, $result)
+------------------------------------------------------------------------------------
+But: Récupérer les symptômes avec leurs gravités saisies par le patient
+Cas de base: Si index >= nombre d'IDs -> retourner result
+Récursion: 
+  - Récupérer symptôme par ID
+  - Ajouter sa gravité
+  - Traiter ID suivant
+
+
+3.2 calculerGraviteTotaleRecursif($symptomes, $index)
+-----------------------------------------------------
+But: Calculer la somme des gravités de tous les symptômes
+Cas de base: Si index >= taille -> retourner 0
+Récursion: gravité[index] + calculerGraviteTotale(symptomes, index + 1)
+
+Exemple:
+  symptomes = [gravité:5, gravité:3, gravité:7]
+  = 5 + calculer(remaining, 1)
+  = 5 + 3 + calculer(remaining, 2)
+  = 5 + 3 + 7 + 0 = 15
+
+
+3.3 getSymptomesSelectionnesRecursif($symptomeModel, $ids, $index, $result)
+---------------------------------------------------------------------------
+But: Récupérer les objets symptômes à partir des IDs sélectionnés
+Cas de base: Si index >= nombre d'IDs -> retourner result
+Récursion: Récupérer symptôme actuel + traiter ID suivant
+
+
+3.4 quicksortRecursif($array) - QUICKSORT pour trier symptômes par nom
+----------------------------------------------------------------------
+But: Trier les symptômes par ordre alphabétique
+Cas de base: Si <= 1 élément -> retourner tel quel
+Récursion:
+  - Pivot = premier élément
+  - Partitionner selon comparaison de noms (strcasecmp)
+  - Trier récursivement gauche et droite
+  - Fusionner
+
+
+3.5 partitionnerRecursif($array, $pivot, $index, &$left, &$right)
+-----------------------------------------------------------------
+But: Partitionner le tableau pour Quicksort
+Compare les noms avec strcasecmp() pour tri alphabétique
+
+
+================================================================================
+                         4. PRINCIPES DE LA RECURSIVITE
+================================================================================
+
+4.1 Structure d'une fonction récursive:
+----------------------------------------
+function recursive($parametres, $index = 0) {
+    // CAS DE BASE - condition d'arrêt
+    if (condition_arret) {
+        return valeur_finale;
+    }
+    
+    // TRAITEMENT de l'élément actuel
+    $resultat = traiter($parametres[$index]);
+    
+    // APPEL RECURSIF avec progression vers le cas de base
+    return $resultat + recursive($parametres, $index + 1);
+}
+
+4.2 Avantages:
+--------------
+- Code plus lisible et élégant
+- Suit la logique mathématique
+- Facilite la résolution de problèmes divisibles
+
+4.3 Inconvénients:
+------------------
+- Utilise plus de mémoire (pile d'appels)
+- Peut être plus lent que l'itération
+- Risque de débordement de pile (stack overflow) avec grandes données
+
+
+================================================================================
+                              FIN DU DOCUMENT
+================================================================================
