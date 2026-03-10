@@ -1,0 +1,117 @@
+<div class="status-container">
+  <h2>📊 Statut de la connexion</h2>
+
+  <!-- Message d'erreur global -->
+  @if (errorMessage) {
+    <div class="alert alert-error">
+      <span class="alert-icon">⚠️</span>
+      <span>{{ errorMessage }}</span>
+    </div>
+  }
+
+  <!-- Cartes de statut -->
+  <div class="status-grid">
+    <!-- Statut API -->
+    <div class="status-card">
+      <div class="card-header">
+        <h3>🌐 API Backend</h3>
+        @if (apiStatus) {
+          <span class="badge badge-success">En ligne</span>
+        } @else {
+          <span class="badge badge-error">Hors ligne</span>
+        }
+      </div>
+      <div class="card-body">
+        @if (apiStatus) {
+          <p class="status-message">{{ apiStatus.message }}</p>
+          <p class="status-timestamp">Dernière vérification: {{ apiStatus.timestamp | date:'medium' }}</p>
+        } @else {
+          <p class="status-message error">Impossible de joindre le serveur backend</p>
+          <p class="hint">Assurez-vous que le serveur Node.js est démarré sur le port 3000</p>
+        }
+      </div>
+    </div>
+
+    <!-- Statut Base de données -->
+    <div class="status-card" [ngClass]="getStatusClass()">
+      <div class="card-header">
+        <h3>🗄️ SQL Server</h3>
+        @if (databaseStatus) {
+          @switch (databaseStatus.status) {
+            @case ('CONNECTED') {
+              <span class="badge badge-success">Connecté</span>
+            }
+            @case ('DISCONNECTED') {
+              <span class="badge badge-warning">Déconnecté</span>
+            }
+            @case ('ERROR') {
+              <span class="badge badge-error">Erreur</span>
+            }
+          }
+        } @else {
+          <span class="badge badge-unknown">Inconnu</span>
+        }
+      </div>
+      <div class="card-body">
+        @if (databaseStatus) {
+          <p class="status-message">{{ databaseStatus.message }}</p>
+          @if (databaseStatus.database) {
+            <div class="status-details">
+              <p><strong>Base:</strong> {{ databaseStatus.database }}</p>
+              <p><strong>Serveur:</strong> {{ databaseStatus.server }}</p>
+            </div>
+          }
+          <p class="status-timestamp">Mis à jour: {{ databaseStatus.timestamp | date:'medium' }}</p>
+        } @else {
+          <p class="status-message">Statut inconnu</p>
+        }
+
+        <!-- Boutons d'action -->
+        <div class="action-buttons">
+          @if (!isConnected) {
+            <button 
+              class="btn btn-primary" 
+              (click)="connect()" 
+              [disabled]="isConnecting || isLoading">
+              @if (isConnecting) {
+                <span class="spinner"></span> Connexion...
+              } @else {
+                🔌 Se connecter
+              }
+            </button>
+          } @else {
+            <button 
+              class="btn btn-secondary" 
+              (click)="disconnect()" 
+              [disabled]="isConnecting || isLoading">
+              @if (isConnecting) {
+                <span class="spinner"></span> Déconnexion...
+              } @else {
+                ⏏️ Se déconnecter
+              }
+            </button>
+          }
+          
+          <button 
+            class="btn btn-outline" 
+            (click)="checkStatus()" 
+            [disabled]="isLoading">
+            @if (isLoading) {
+              <span class="spinner"></span>
+            } @else {
+              🔄 Actualiser
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Indicateur de chargement -->
+  @if (isLoading) {
+    <div class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <p>Vérification en cours...</p>
+    </div>
+  }
+</div>
