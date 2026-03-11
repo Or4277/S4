@@ -1,0 +1,17 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Web_Dynamique/Spring/EXO/06_03_26/ANNOTATION_CONFIGURATION/lib/spring-expression-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/06_03_26/ANNOTATION_CONFIGURATION/lib/spring-core-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/06_03_26/ANNOTATION_CONFIGURATION/lib/spring-context-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/06_03_26/ANNOTATION_CONFIGURATION/lib/spring-beans-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/06_03_26/ANNOTATION_CONFIGURATION/lib/spring-aop-5.3.18.jar",
+        "Web_Dynamique/Spring/EXO/06_03_26/ANNOTATION_CONFIGURATION/lib/commons-logging-1.2.jar",
+        "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/spring-expression-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/spring-core-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/spring-context-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/spring-beans-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/spring-aop-5.3.18.jar",
+        "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/commons-logging-1.2.jar"
+    ]
+}
