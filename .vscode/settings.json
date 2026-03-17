@@ -12,6 +12,13 @@
         "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/spring-context-7.0.0-M8.jar",
         "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/spring-beans-7.0.0-M8.jar",
         "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/spring-aop-5.3.18.jar",
-        "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/commons-logging-1.2.jar"
+        "Web_Dynamique/Spring/EXO/10_03_26/TP_Etudiant/lib/commons-logging-1.2.jar",
+        "Web_Dynamique/Spring/EXO/13_03_26/cheque/lib/spring-expression-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/13_03_26/cheque/lib/spring-core-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/13_03_26/cheque/lib/spring-context-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/13_03_26/cheque/lib/spring-beans-7.0.0-M8.jar",
+        "Web_Dynamique/Spring/EXO/13_03_26/cheque/lib/spring-aop-5.3.18.jar",
+        "Web_Dynamique/Spring/EXO/13_03_26/cheque/lib/mariadb-java-client-3.5.6.jar",
+        "Web_Dynamique/Spring/EXO/13_03_26/cheque/lib/commons-logging-1.2.jar"
     ]
 }
