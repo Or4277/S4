@@ -1,0 +1,13 @@
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/bin/Debug/net8.0/Data.deps.json
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/bin/Debug/net8.0/Data.dll
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/bin/Debug/net8.0/Data.pdb
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/Data.csproj.AssemblyReference.cache
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/Data.GeneratedMSBuildEditorConfig.editorconfig
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/Data.AssemblyInfoInputs.cache
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/Data.AssemblyInfo.cs
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/Data.csproj.CoreCompileInputs.cache
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/Data.sourcelink.json
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/Data.dll
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/refint/Data.dll
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/Data.pdb
+/home/oxno/4277/S4/S4/Prog/22_03_26/Jeu_de _point/src/Data/obj/Debug/net8.0/ref/Data.dll

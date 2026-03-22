@@ -1,0 +1,100 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/oxno/4277/S4/S4/PostgresConnector/PostgresConnector.csproj": {}
+  },
+  "projects": {
+    "/home/oxno/4277/S4/S4/PostgresConnector/PostgresConnector.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/oxno/4277/S4/S4/PostgresConnector/PostgresConnector.csproj",
+        "projectName": "PostgresConnector",
+        "projectPath": "/home/oxno/4277/S4/S4/PostgresConnector/PostgresConnector.csproj",
+        "packagesPath": "/home/oxno/.nuget/packages/",
+        "outputPath": "/home/oxno/4277/S4/S4/PostgresConnector/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/oxno/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.114/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
